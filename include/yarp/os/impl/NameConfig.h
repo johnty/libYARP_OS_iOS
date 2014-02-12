@@ -5,6 +5,10 @@
  * Authors: Paul Fitzpatrick
  * CopyPolicy: Released under the terms of the LGPLv2.1 or later, see LGPL.TXT
  *
+ * 2014 update: Johnty Wang (johntywang@gmail.com)
+ * Experimental development branch for HPlus Canarie MNM project; based on yarp 2.3.22
+ * Additions: added manual override for name server config - doesn't have to load from file as
+ * files are problematic in iOS due to read only nature of file system. todo: look into preferences for reading/writing settings)
  */
 
 #ifndef _YARP2_NAMECONFIG_
@@ -73,6 +77,9 @@ public:
 
     void setNamespace(const String& ns);
 
+	static void setManualConfig(String ip, int port);
+
+
 private:
     Address address;
     String space;
@@ -80,6 +87,12 @@ private:
     String mode;
 
     bool fromString(const String& txt);
+
+	static bool manualConfig;
+	static String manualIP;
+	static int manualPort;
+
+
 };
 
 #endif
